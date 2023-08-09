@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>内容编辑</title>
+</head>
+
+<body>
+    <p id="title">内容编辑</p>
+    <div id="main">
+        <button id="addnew"
+            hx-on="htmx:configRequest: event.detail.headers=''; event.detail.headers['Content-Type']='application/x-www-form-urlencoded;charset=UTF-8'"
+            hx-get="http://127.0.0.1:3000/editor/new" hx-target="#editor" _="on click remove .active from .active">
+            新建 +
+        </button>
+        <div class="container" id="ff">
+            <div id="sidebar">
+            </div>
+            <div id="editor" hx-swap="innerHtml">
+                <form id="editorForm"
+                    hx-on="htmx:configRequest: event.detail.headers=''; event.detail.headers['Content-Type']='application/x-www-form-urlencoded;charset=UTF-8'"
+                    hx-get="http://127.0.0.1:3000/editor/edit/1" hx-target="#editor"
+                    _="on click remove .active from .active">
+                    <p class="formitem"><span>表单名称：<span><input type="text" name="title" /></p>
+                    <p class="formitem"><span>表单内容：</span><textarea name="text"></textarea></p>
+                    <p class="formitem submit"><button type="submit">确定</button> </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/htmx.org@1.9.4"></script>
+
+</html>
